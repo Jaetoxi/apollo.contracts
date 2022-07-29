@@ -55,6 +55,8 @@ class [[eosio::contract("amax.ntoken")]] ntoken : public contract {
    ACTION issue( const name& to, const nasset& quantity, const string& memo );
 
    ACTION retire( const nasset& quantity, const string& memo );
+   
+   ACTION seturl(const string& token_uri, const uint32_t& token_id);
 	/**
 	 * @brief Transfers one or more assets.
 	 * 

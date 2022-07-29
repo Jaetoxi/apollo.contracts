@@ -59,6 +59,15 @@ void ntoken::notarize(const name& notary, const uint32_t& token_id) {
     });
 }
 
+void ntoken::seturl(const string& token_uri, const uint32_t& token_id) {
+   auto nstats = nstats_t::idx_t( _self, _self.value );
+   auto itr = nstats.find( token_id );
+   check( itr != nstats.end(), "token not found: " + to_string(token_id) );
+   nstats.modify( itr, same_payer, [&]( auto& row ) {
+      row.token_uri = token_uri;
+    });
+}
+
 void ntoken::issue( const name& to, const nasset& quantity, const string& memo )
 {
     auto sym = quantity.symbol;
